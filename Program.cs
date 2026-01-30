@@ -28,7 +28,7 @@ builder.Services.AddScoped<IstudentService, StudentService>();//Dependency Injec
 builder.Services.AddScoped<IEmailService, EmailService>();//Dependency Injection
 builder.Services.AddCors(options => options.AddPolicy("allowreact",
    // policy => policy.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader()
-    policy => policy.WithOrigins("https://library-frontend-production-575c.up.railway.app")
+    policy => policy.AllowAnyOrigin()
 .AllowAnyMethod().AllowAnyHeader()
     ));
 var app = builder.Build();
