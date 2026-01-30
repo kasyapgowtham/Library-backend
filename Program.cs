@@ -17,7 +17,9 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<IstudentService, StudentService>();//Dependency Injection
 builder.Services.AddScoped<IEmailService, EmailService>();//Dependency Injection
 builder.Services.AddCors(options => options.AddPolicy("allowreact",
-    policy => policy.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader()
+   // policy => policy.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader()
+    policy => policy.WithOrigins("https://library-frontend-production-575c.up.railway.app")
+.AllowAnyMethod().AllowAnyHeader()
     ));
 var app = builder.Build();
 
