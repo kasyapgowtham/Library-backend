@@ -1,17 +1,27 @@
 using backend.data;
+using backend.Services;
 using backend.Services.Interfaces;
 using Microsoft.EntityFrameworkCore;
+using Npgsql.EntityFrameworkCore.PostgreSQL;
 using Microsoft.EntityFrameworkCore.SqlServer;
-using backend.Services;
+using System;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 //builder.Services.AddOpenApi();
-builder.Services.AddDbContext<StudentDb>(optionsAction =>
-{
-    optionsAction.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
-});
+//builder.Services.AddDbContext<StudentDb>(optionsAction =>
+//{
+//    optionsAction.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
+//});
+var connectionString =
+    builder.Configuration.GetConnectionString("DefaultConnection")
+    ?? Environment.GetEnvironmentVariable("DATABASE_URL");
+builder.Services.AddDbContext<StudentDb>(options =>
+    options.UseNpgsql(
+        connectionString
+    )
+);
 builder.Services.AddControllers();
 builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<IstudentService, StudentService>();//Dependency Injection
