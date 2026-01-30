@@ -32,6 +32,8 @@ if (app.Environment.IsDevelopment())
 }
 app.UseCors("allowreact");
 //app.UseHttpsRedirection();
+app.UseDeveloperExceptionPage();
+
 app.MapControllers();
 var summaries = new[]
 {
