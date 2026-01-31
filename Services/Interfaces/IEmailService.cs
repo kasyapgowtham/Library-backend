@@ -4,6 +4,6 @@
     {
         Task SendPaymentSuccessEmail(string toEmail, decimal amount);
 
-        Task SendBookingConfirmationEmail(string toEmail, DateTime bookedDate);
+      //  Task SendBookingConfirmationEmail(string toEmail, DateTime bookedDate);
     }
 }
