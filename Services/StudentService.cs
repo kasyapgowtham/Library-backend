@@ -53,6 +53,7 @@ namespace backend.Services
         }
         public async Task  payment(paymentRequest paymentRequest)
         {
+            paymentRequest.Expiry = DateTime.UtcNow;
             var payment = new Payment
             {
                 Email = paymentRequest.Email,
