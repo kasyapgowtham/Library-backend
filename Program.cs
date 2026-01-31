@@ -14,10 +14,12 @@ var builder = WebApplication.CreateBuilder(args);
 //{
 //    optionsAction.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
 //});
-var connectionString = builder.Configuration["DATABASE_URL"];
+//var connectionString = builder.Configuration["DATABASE_URL"];
 
 builder.Services.AddDbContext<StudentDb>(options =>
-    options.UseNpgsql(connectionString)
+    options.UseNpgsql(
+        builder.Configuration.GetConnectionString("DefaultConnection")
+    )
 );
 
 builder.Services.AddControllers();
