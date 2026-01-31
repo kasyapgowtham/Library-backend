@@ -14,14 +14,12 @@ var builder = WebApplication.CreateBuilder(args);
 //{
 //    optionsAction.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
 //});
-var connectionString =
-    builder.Configuration.GetConnectionString("DefaultConnection")
-    ?? Environment.GetEnvironmentVariable("DATABASE_URL");
+var connectionString = builder.Configuration["DATABASE_URL"];
+
 builder.Services.AddDbContext<StudentDb>(options =>
-    options.UseNpgsql(
-        connectionString
-    )
+    options.UseNpgsql(connectionString)
 );
+
 builder.Services.AddControllers();
 builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<IstudentService, StudentService>();//Dependency Injection

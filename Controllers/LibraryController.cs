@@ -44,15 +44,15 @@ namespace backend.Controllers
 
             return Ok(new { message = "Payment successful" });
         }
-        [HttpPost("booking")]
-        public async Task<IActionResult> makeBooking([FromBody] BookRequest bookingrequest)
-        {
-            await _studentService.booking(bookingrequest);
-            await _emailService.SendBookingConfirmationEmail(
-                bookingrequest.Email,
-                bookingrequest.booked
-            );
-            return Ok(new { message = "Booking successful" });
-        }
+        //[HttpPost("booking")]
+        //public async Task<IActionResult> makeBooking([FromBody] BookRequest bookingrequest)
+        //{
+        //    await _studentService.booking(bookingrequest);
+        //    await _emailService.SendBookingConfirmationEmail(
+        //        bookingrequest.Email,
+        //        bookingrequest.booked
+        //    );
+        //    return Ok(new { message = "Booking successful" });
+        //}
     }
 }
